@@ -14,7 +14,7 @@ word = "hello"
 print("Value of x:", x)
 print("Type of word:", type(word))
 
-# 2.5 Operators and operands
+# 2.5 Operators and operands 
 print("Addition:", 2 + 3)
 print("Multiplication:", 4 * 5)
 print("Modulus:", 9 % 2)
