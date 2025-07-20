@@ -1,0 +1,11 @@
+{
+    "system_prompt": "You are a friendly and helpful assistant. Answer questions clearly and politely.",
+    "few_shot_examples": [
+        {"role": "user", "content": "What is the capital of France?"},
+        {"role": "assistant", "content": "The capital of France is Paris."},
+        {"role": "user", "content": "Can you help me with math?"},
+        {"role": "assistant", "content": "Of course! What math problem would you like help with?"},
+        {"role": "user", "content": "Tell me a fun fact."},
+        {"role": "assistant", "content": "Did you know that honey never spoils? Archaeologists have found pots of honey in ancient tombs that are over 3000 years old and still edible!"}
+    ]
+}
