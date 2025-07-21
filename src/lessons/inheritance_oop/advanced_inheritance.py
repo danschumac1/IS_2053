@@ -1,62 +1,58 @@
-'''
-2025-07-21
-Author: Dan Schumacher
-How to run:
-    python ./src/lessons/oop/inheritance_examples.py
-'''
+# bank.py
 
-class Vehicle:
-    def __init__(self, make, model):
-        self.make = make
-        self.model = model
+class BankAccount:
+    def __init__(self, owner, balance=0.0):
+        self.owner = owner
+        self.balance = balance
 
-    def description(self):
-        return f"This is a {self.make} {self.model}."
+    def deposit(self, amount):
+        if amount <= 0:
+            raise ValueError("Deposit must be positive.")
+        self.balance += amount
 
-    def start_engine(self):
-        return "The engine starts with a roar!"
+    def withdraw(self, amount):
+        if amount > self.balance:
+            raise ValueError("Insufficient funds.")
+        self.balance -= amount
 
+    def get_balance(self):
+        return self.balance
 
-# Child class
-class ElectricVehicle(Vehicle):
-    def __init__(self, make, model, battery_size):
-        super().__init__(make, model)
-        self.battery_size = battery_size
-
-    def description(self):
-        # Override to include battery info
-        return f"This is a {self.make} {self.model} with a {self.battery_size}kWh battery."
-
-    def start_engine(self):
-        # Override with EV specific behavior
-        return "The electric motor starts silently."
+    def __str__(self):
+        return f"{self.owner}'s account balance: ${self.balance:.2f}"
 
 
-# Another child class
-class GasVehicle(Vehicle):
-    def __init__(self, make, model, fuel_capacity):
-        super().__init__(make, model)
-        self.fuel_capacity = fuel_capacity
+class SavingsAccount(BankAccount):
+    def __init__(self, owner, balance=0.0, interest_rate=0.02):
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
 
-    def refuel(self):
-        return f"Refueled {self.fuel_capacity} liters of gas."
-
-
-# Example usage
-def main():
-    car = Vehicle("Toyota", "Corolla")
-    print(car.description())
-    print(car.start_engine())
-
-    tesla = ElectricVehicle("Tesla", "Model 3", 75)
-    print(tesla.description())
-    print(tesla.start_engine())
-
-    mustang = GasVehicle("Ford", "Mustang", 60)
-    print(mustang.description())
-    print(mustang.start_engine())
-    print(mustang.refuel())
+    def apply_interest(self):
+        interest = self.balance * self.interest_rate
+        self.deposit(interest)
 
 
+class CheckingAccount(BankAccount):
+    def __init__(self, owner, balance=0.0, overdraft_limit=100.0):
+        super().__init__(owner, balance)
+        self.overdraft_limit = overdraft_limit
+
+    def withdraw(self, amount):
+        if amount > self.balance + self.overdraft_limit:
+            raise ValueError("Overdraft limit exceeded.")
+        self.balance -= amount
+
+
+# Example usage:
 if __name__ == "__main__":
-    main()
+    alice = SavingsAccount("Alice", 1000)
+    bob = CheckingAccount("Bob", 200)
+
+    alice.apply_interest()
+    bob.withdraw(250)  # overdraft
+
+    alice.deposit(300)
+    bob.deposit(500)
+
+    print(alice)
+    print(bob)
