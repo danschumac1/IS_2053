@@ -17,7 +17,6 @@ class Card:
     def __str__(self):
         return f"{self.rank} of {self.suit}"
 
-
 class Deck:
     """Represents a deck of 52 playing cards."""
     suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']

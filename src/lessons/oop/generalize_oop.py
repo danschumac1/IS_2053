@@ -20,18 +20,15 @@ class Animal:
         return f"{self.name} eats {self.type_of_food}."
 
 def main():
-    ...
+    # Volunteers
+    cat = Animal("CAT", "cat_food", "Meow")
+    dog = Animal("DOG", "dog_food", "Woof")
+    cow = Animal("COW", "grass", "Moo")
 
+    animals = [cat, dog, cow]
+
+    for animal in animals:
+        print(animal.speak())
+        print(animal.favorite_food())
 if __name__ == "__main__":
     main()
-
-# Volunteers
-cat = Animal("CAT", "cat_food", "Meow")
-dog = Animal("DOG", "dog_food", "Woof")
-cow = Animal("COW", "grass", "Moo")
-
-animals = [cat, dog, cow]
-
-for animal in animals:
-    print(animal.speak())
-    print(animal.favorite_food())

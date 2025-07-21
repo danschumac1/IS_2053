@@ -43,7 +43,6 @@ class Cow:
     def favorite_food(self):
         return f"{self.name} eats {self.type_of_food}."
 
-
 def main():
     cat = Cat()
     dog = Dog()
